@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Personal de SECT
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+          Ingresar personal
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+              <ion-input required type="text" placeholder="Nombre" [(ngModel)]="user.nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Apellido" [(ngModel)]="user.apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Sueldo" [(ngModel)]="user.Sueldo"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Celular" [(ngModel)]="user.celular"></ion-input>
+          </ion-item>
+          <ion-item><ion-label>Status:</ion-label>
+              <ion-select [(ngModel)]="user.estado" placeholder="Select One">
+                  <ion-select-option value="activo">Activo</ion-select-option>
+                  <ion-select-option value="inactivo">Inactivo</ion-select-option>
+                </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-button color="success" expand="block" (click)="add()">Save</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+     
+          <ion-list>
+      <ion-card *ngFor="let usuario of usuarios">
+        <ion-card-header>
+          <ion-card-subtitle>{{usuario.nombre}}  {{usuario.apellido}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Sueldo: {{usuario.Sueldo}}</p>
+          <p>Celular: {{usuario.celular}}</p>
+          <p>Status: {{usuario.estado}}</p>
+          <ion-button color="primary" (click)="edit(usuario.id,usuario.nombre,usuario.apellido,usuario.Sueldo,usuario.celular,usuario.estado)"><ion-icon name="build"></ion-icon></ion-button>
+          <ion-button color="danger" (click)="remove(usuario.id)"><ion-icon name="backspace"></ion-icon></ion-button>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+  <ion-button expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+</ion-content>

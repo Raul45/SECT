@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     Pendientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+          Ingresar pendientes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+              <ion-label>Status:</ion-label>
+              <ion-select [(ngModel)]="pendie.estado" placeholder="Select One">
+                  <ion-select-option value="pendiente">Pendiente</ion-select-option>
+                </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Pedido" [(ngModel)]="pendie.pedido"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Ubicación" [(ngModel)]="pendie.ubicacion"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-button color="success" expand="block" (click)="add()">Save</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+     
+          <ion-list>
+      <ion-card *ngFor="let pp of pendientes">
+        <ion-card-header>
+          <ion-card-subtitle>{{pp.estado}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Pedido: {{pp.pedido}}</p>
+          <p>Ubicación: {{pp.ubicacion}}</p>
+          
+          <ion-button color="primary" (click)="edit(pp.id,pp.estado,pp.pedido,pp.ubicacion)"><ion-icon name="build"></ion-icon></ion-button>
+          <ion-button color="success" (click)="remove(pp.id)">Terminado <ion-icon name="cloud-done"></ion-icon></ion-button>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+
+  <ion-button expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+
+</ion-content>
